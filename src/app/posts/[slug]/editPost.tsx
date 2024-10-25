@@ -6,19 +6,17 @@ export default function EditForm({
   id,
   title,
   content,
-}: // slug,
-{
+}: {
   id: string;
   title: string;
   content: string;
-  // slug: string;
 }) {
   const router = useRouter();
 
   const handleAction = (e: FormData) => {
     console.log(e);
     editPost(e, id);
-    router.push(`/posts`);
+    router.push("/posts");
   };
 
   return (

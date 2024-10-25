@@ -3,7 +3,11 @@ import Link from "next/link";
 import DeletePost from "./deletePost";
 import EditForm from "./editPost";
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = await prisma.post.findUnique({
     where: {
@@ -23,12 +27,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
       </Link>
 
       {post?.id && (
-        <EditForm
-          id={post.id}
-          title={post.title}
-          content={post.content}
-          // slug={post.slug}
-        />
+        <EditForm id={post.id} title={post.title} content={post.content} />
       )}
     </div>
   );
